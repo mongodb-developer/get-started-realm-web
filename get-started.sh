@@ -1,7 +1,10 @@
 #!/bin/bash
 echo "Executing ... "
 APP_NAME=${1}
-
+if [ -z ${APP_NAME} ]
+then
+    read -p "MongoDB Realm Application ID (Required): " APP_NAME
+fi 
 docker run -it --rm \
     -p 3000:3000 \
     -v "$(pwd)":/workspace \
