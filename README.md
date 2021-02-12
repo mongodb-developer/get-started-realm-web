@@ -17,7 +17,7 @@ Have Docker running on your machine. You can download and install from: https://
 In order to execute the code example, you need to have: 
 
 * [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) cluster
-* Create a [MongoDB Atlas Programmatic API](https://docs.atlas.mongodb.com/configure-api-access#programmatic-api-keys). 
+* Create a [MongoDB Atlas Programmatic API](https://docs.atlas.mongodb.com/configure-api-access#programmatic-api-keys). You would create a `Project Owner` permission, see also [Add an API key to your Atlas Project](https://docs.mongodb.com/realm/tutorial/realm-app#d.-add-an-api-key-to-your-atlas-project---log-into-the-realm-cli) for steps on how to get Public and Private keys. 
 
 If you don't have an existing cluster, you can create one by signing up [MongoDB Atlas Free-tier M0](https://docs.atlas.mongodb.com/getting-started/). 
 
