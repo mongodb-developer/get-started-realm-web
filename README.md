@@ -39,6 +39,14 @@ If you don't have an existing cluster, you can create one by signing up [MongoDB
   ```
 Once successful, you should be able to access the web application from a browser via `localhost:3000`
 
+## Tear Down 
+
+How to remove the environment setup (deleting traces of this get-started project):
+
+* Terminate the `get-started.sh` process if it's running. This is to stop the web service on `localhost:3000`.
+* Remove the Docker volume `get-started-realm` using command: `docker volume rm get-started-realm`
+* Remove the Docker image `realm-web` using command: `docker rmi <IMAGE ID>`. You can get the Docker image ID by performing `docker images`
+
 ## Tutorials
 
 * [Realm Tutorial: Backend](https://docs.mongodb.com/realm/tutorial/realm-app)
