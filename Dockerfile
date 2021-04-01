@@ -1,30 +1,24 @@
 FROM ubuntu:20.04
 
-ARG DEBIAN_FRONTEND=noninteractive
-ARG PUBLIC_KEY
-ARG PRIVATE_KEY
+LABEL org.opencontainers.image.source=https://github.com/mongodb-developer/get-started-realm-web
 
-RUN apt-get update && apt-get install -y \
-    git \
-    npm && \
-    apt-get clean && \
+ENV DEBIAN_FRONTEND=noninteractive \
+    HOME=/home/ubuntu \ 
+    PATH=${PATH}:/home/ubuntu/.npm-global/bin
+
+RUN useradd -ms /bin/bash ubuntu && \
+    apt-get update && apt-get install -y npm git && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash ubuntu 
-
-ENV WORKSPACE /workspace
-ENV GSDIR ${WORKSPACE}/realm-web
-ENV PUBLIC_KEY ${PUBLIC_KEY}
-ENV PRIVATE_KEY ${PRIVATE_KEY}
-ENV PATH ${PATH}:/home/ubuntu/.npm-global/bin
-
-RUN mkdir -p ${GSDIR} && chown -R ubuntu ${WORKSPACE}/ && \
-    chmod -R 750 ${GSDIR}/     
-WORKDIR ${GSDIR}
-
 USER ubuntu
-RUN mkdir -p /home/ubuntu/.npm-global && \
-    npm config set prefix /home/ubuntu/.npm-global && \
-    npm --global --no-progress install mongodb-realm-cli
 
-ENTRYPOINT ["/bin/bash", "-c"]  
+RUN mkdir -p ${HOME}/.npm-global && \
+    npm config set prefix ${HOME}/.npm-global && \
+    npm --global --no-progress install mongodb-realm-cli;\
+    cd ${HOME};\
+    git clone --depth 1 https://github.com/sindbach/realm-tutorial-backend.git;\
+    git clone --depth 1 https://github.com/sindbach/realm-tutorial-web.git;\
+    cd ${HOME}/realm-tutorial-web;\
+    npm install;
+
+ENTRYPOINT ["/bin/bash", "-c"]
