@@ -23,29 +23,15 @@ If you don't have an existing cluster, you can create one by signing up [MongoDB
 
 ##  Execution Steps 
 
-1. Build Docker image with a tag name. Within the top level directory execute: 
-  ```
-  docker build . -t realm-web
-  ```
-   This will build a docker image with a tag name `realm-web`. 
-
-2. Execute the helper shell setup script by providing the PUBLIC and PRIVATE programmatic API keys: 
+1. Execute the helper shell setup script by providing the PUBLIC and PRIVATE programmatic API keys: 
   ```
   ./get-setup.sh <PUBLIC_KEY> <PRIVATE_KEY>
   ```
-3. Execute the helper shell starter script by providing the Realm application ID. The output from `get-setup.sh` helper script should inform you the name of the newly created Realm application. 
+2. Execute the helper shell starter script by providing the Realm application ID. The output from `get-setup.sh` helper script should inform you the name of the newly created Realm application. 
   ```
   ./get-started.sh <REALM_APP_ID>
   ```
 Once successful, you should be able to access the web application from a browser via `localhost:3000`
-
-## Tear Down 
-
-How to remove the environment setup (deleting traces of this get-started project):
-
-* Terminate the `get-started.sh` process if it's running. This is to stop the web service on `localhost:3000`.
-* Remove the Docker volume `get-started-realm` using command: `docker volume rm get-started-realm`
-* Remove the Docker image `realm-web` using command: `docker rmi <IMAGE ID>`. You can get the Docker image ID by performing `docker images`
 
 ## Tutorials
 
